@@ -36,3 +36,34 @@ void enqueue(Pelanggan p) { // Fungsi untuk menambahkan pelanggan
 
     printf("Pelanggan dengan ID %d berhasil ditambahkan.\n", p.id);
 }
+
+Pelanggan dequeue() { // Mengambil dan menghapus pelanggan terdepan
+
+    Pelanggan kosong = {-1, 0, 0, 0};
+
+    if (isEmpty()) {
+        printf("Queue kosong!\n");
+        return kosong;
+    }
+
+    Pelanggan p = queue[front];
+
+    front++;
+
+    return p;
+}
+
+void prosesPelanggan(int *total_riwayat, Pelanggan riwayat[]) {
+
+    Pelanggan p = dequeue();
+
+    if (p.id == -1) {
+        return;
+    }
+
+    p.waktu_tunggu = p.waktu_layanan;
+
+    riwayat[*total_riwayat] = p;
+
+    (*total_riwayat)++;
+}
